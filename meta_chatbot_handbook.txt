@@ -1,0 +1,61 @@
+=========================================================
+      CẨM NANG TRIỂN KHAI CHATBOT AI & LUẬT META
+=========================================================
+
+1. LUẬT 24 GIỜ (QUAN TRỌNG NHẤT)
+---------------------------------
+- Khi khách nhắn tin cho Page, bạn có 24 GIỜ để trả lời (bằng bot hoặc bằng tay) thoải mái.
+- Sau 24 giờ, Facebook sẽ "khóa" cổng nhắn tin thông thường lại.
+- MUỐN NHẮN TIẾP THÌ SAO? -> Phải dùng "Thẻ tin nhắn" (Message Tags).
+
+2. CÁC LOẠI "THẺ TIN NHẮN" (MESSAGE TAGS) HỢP LỆ
+-----------------------------------------------
+Để nhắn tin cho khách SAU 24 giờ mà không bị khóa Page, bạn phải gắn thẻ cho tin nhắn đó:
+
+A. Thẻ HUMAN_AGENT (Đặc quyền nhân viên hỗ trợ):
+   - Đây KHÔNG phải là giới hạn, mà là ưu tiên: Cho phép bạn rep khách sau tận 7 NGÀY (thay vì 24h).
+   - Dùng để "vớt" những khách nhắn tin từ mấy ngày trước mà bạn chưa kịp trả lời.
+   - CƠ CHẾ RESET: Ngay khi khách nhắn tin trả lời bạn, vòng lặp 24h sẽ được làm mới hoàn toàn. Bạn và khách lại chat với nhau bình thường không giới hạn thời gian, miễn là mỗi bên đều phản hồi trong vòng 24h.
+
+B. Thẻ POST_PURCHASE_UPDATE (Cập nhật đơn hàng):
+   - Tự động gửi thông báo khi khách đã mua hàng (ship hàng, giao hàng...).
+
+C. Thẻ ACCOUNT_UPDATE (Cập nhật tài khoản):
+   - Thông báo về các thay đổi bảo mật, chính sách.
+
+** LƯU Ý: Tuyệt đối không dùng các thẻ này để gửi QUẢNG CÁO, GIẢM GIÁ. Meta sẽ quét được và khóa Page.
+
+3. TIN NHẮN QUẢNG CÁO (MARKETING MESSAGES)
+------------------------------------------
+Đây là cách duy nhất để gửi tin khuyến mãi/sale hợp lệ sau 24h:
+- Bước 1: Gửi lời mời "Bạn có muốn nhận tin sale không?" kèm nút [Đăng ký].
+- Bước 2: Khách nhấn [Đăng ký] -> Bạn được cấp quyền gửi tin sale định kỳ.
+- Thời hạn: Tùy gói (Hàng ngày: 6 tháng; Hàng tuần: 9 tháng; Hàng tháng: 12 tháng).
+
+4. KẾ HOẠCH TRIỂN KHAI AI CHATBOT (GZ-AI)
+------------------------------------------
+Hệ thống của mình sẽ hoạt động như sau:
+
+Bước 1: TIẾP NHẬN (Real-time)
+- Webhook nhận tin mới -> Đẩy sang AI (GPT-4o) ngay lập tức.
+
+Bước 2: AI TRẢ LỜI (Trong 24h)
+- AI dựa trên "Kịch bản bán hàng" của bạn để rep khách (tư vấn giá, sản phẩm).
+- Nếu AI thấy khách muốn mua hoặc hỏi khó -> AI sẽ tự động "im lặng".
+
+Bước 3: NGƯỜI THẬT CAN THIỆP (GZChat)
+- Khi AI im lặng, Dashboard GZChat sẽ báo chuông.
+- Bạn vào rep tay. Lúc này hệ thống tự động gắn thẻ HUMAN_AGENT để bạn chat được tới 7 ngày.
+
+5. CÁC BƯỚC CẦN LÀM ĐỂ META DUYỆT (APP REVIEW)
+-----------------------------------------------
+- Bạn cần quay clip demo con bot đang chat với khách.
+- Cấu hình "Privacy Policy" trên web genztechcorp.com (Tôi sẽ hỗ trợ sau).
+- Gửi yêu cầu xét duyệt các quyền: pages_messaging, Human Agent.
+
+=========================================================
+      TÓM LẠI: LÀM ĐÚNG LUẬT = KHÔNG LO KHÓA PAGE
+=========================================================
+- Chatbot rep trong 24h: OK thoải mái.
+- Người thật rep trong 7 ngày: Dùng thẻ HUMAN_AGENT.
+- Muốn nhắn sale cho khách cũ: Phải mời khách bấm [Đăng ký] trước.

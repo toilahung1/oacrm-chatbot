@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GENZTECH MARKETING - Mark the Global Future | High-Precision Meta Marketing</title>
+    <meta name="description" content="GENZTECH MARKETING - Hệ sinh thái AI Marketing hàng đầu. Tối ưu hóa hiệu suất quảng cáo Facebook và tự động hóa báo cáo.">
+    <meta name="keywords" content="Meta Marketing, AI Marketing, Facebook Ads, Tối ưu quảng cáo, GENZTECH">
+    <meta name="author" content="Genztech Corp">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://genztechcorp.com/">
+    <meta property="og:title" content="GENZTECH MARKETING - Mark the Global Future | High-Precision Meta Marketing">
+    <meta property="og:description" content="Giải pháp quản lý và tối ưu quảng cáo Meta dựa trên trí tuệ nhân tạo. Tăng hiệu suất, giảm thời gian vận hành.">
+    <meta property="og:image" content="https://genztechcorp.com/og-image.png">
+    <meta property="og:image:alt" content="GENZTECH MARKETING - Hệ sinh thái AI Marketing tối ưu cho doanh nghiệp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:site_name" content="GENZTECH">
+    <meta property="fb:app_id" content="{{FB_APP_ID}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://genztechcorp.com/">
+    <meta property="twitter:title" content="GENZTECH MARKETING - Mark the Global Future | High-Precision Meta Marketing">
+    <meta property="twitter:description" content="Hệ sinh thái tối ưu Marketing Meta cho doanh nghiệp. Mark the Global Future.">
+    <meta property="twitter:image" content="https://genztechcorp.com/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        body {
+            background-attachment: scroll, scroll, fixed, fixed;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-alt {
+            background-color: #fbfbfd;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Apple-style Blurred Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 52px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-content {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 22px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 19px;
+            letter-spacing: -0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #1d1d1f;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Hero Section - Apple Minimalist */
+        .hero {
+            padding-top: 150px;
+            text-align: center;
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(210,100%,95%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(220,100%,92%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(230,100%,95%,1) 0, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, #1d1d1f 0%, #434344 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(21px, 2.5vw, 24px);
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .btn-apple {
+            background: #0056b3;
+            color: #ffffff;
+            padding: 10px 24px;
+            border-radius: 980px;
+            font-weight: 500;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-apple:hover {
+            background: #0066cc;
+        }
+
+        .btn-login {
+            background: #0056b3 !important;
+            color: #ffffff !important;
+            padding: 8px 20px;
+            border-radius: 980px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            opacity: 1 !important;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-login:hover {
+            background: #0066cc !important;
+            opacity: 1 !important;
+        }
+
+        .btn-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Fixed Living Mockup Styles */
+        .showcase {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: var(--transition-smooth);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 32px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .mockup-container {
+            background: #ffffff;
+            border-radius: 30px;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .mockup-sidebar {
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding-right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mockup-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 10px;
+            color: var(--text-secondary);
+        }
+
+        .menu-dot {
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+
+        .mockup-item {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .mockup-main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto 1fr;
+            gap: 15px;
+            position: relative;
+        }
+
+        .chart-grid {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            pointer-events: none;
+            border-left: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-line {
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .y-label {
+            position: absolute;
+            left: -30px;
+            font-size: 8px;
+            color: var(--text-secondary);
+            font-family: monospace;
+        }
+
+        .x-axis-labels {
+            position: absolute;
+            bottom: -25px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            color: var(--text-secondary);
+            font-family: monospace;
+        }
+
+        .mockup-stat {
+            background: #fbfbfd;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+            padding: 15px;
+            text-align: left;
+            position: relative;
+        }
+
+        .mockup-stat::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        .mockup-chart {
+            grid-column: span 3;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mockup-line {
+            width: 100%;
+            height: 100%;
+            stroke: var(--primary);
+            stroke-width: 3;
+            fill: none;
+            filter: drop-shadow(0 0 10px var(--primary));
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 4s ease-out forwards;
+        }
+
+        .scanline {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(8, 102, 255, 0.05), transparent);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes scan {
+            from {
+                left: -100%;
+            }
+
+            to {
+                left: 100%;
+            }
+        }
+
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 10px 15px;
+            font-size: 10px;
+            pointer-events: none;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Enhanced Bento Grid Styles */
+        .features {
+            padding: 120px 0;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 350px 350px;
+            gap: 24px;
+        }
+
+        .bento-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border-radius: 28px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 20px rgba(0, 102, 204, 0.05);
+        }
+
+        .bento-card.large {
+            grid-column: span 7;
+        }
+
+        .bento-card.small {
+            grid-column: span 5;
+        }
+
+        .bento-card .card-visual {
+            height: 140px;
+            width: 100%;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .bento-card h3 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .bento-card p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.5;
+            max-width: 90%;
+        }
+
+        /* Feature-specific visuals */
+        .visual-scheduler {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: relative;
+        }
+
+        .post-card-mockup {
+            width: 140px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 12px;
+            position: relative;
+            z-index: 2;
+            transition: var(--transition-smooth);
+            transform: rotate(-2deg);
+        }
+
+        .post-line {
+            height: 6px;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 3px;
+            margin-bottom: 8px;
+        }
+
+        .post-image {
+            height: 60px;
+            background: rgba(8, 102, 255, 0.1);
+            border-radius: 6px;
+            margin-bottom: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            padding: 4px 8px;
+            background: var(--primary);
+            color: white;
+            font-size: 9px;
+            border-radius: 6px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(8, 102, 255, 0.3);
+        }
+
+        .scheduler-stack {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .stack-item {
+            position: absolute;
+            width: 120px;
+            height: 140px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            transform: translate(-20px, -20px) rotate(-8deg);
+            opacity: 0.3;
+        }
+
+        @keyframes pulse-fb {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .visual-tracking {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .data-bar {
+            width: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-fill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: var(--primary);
+            animation: grow 2s ease-out infinite alternate;
+        }
+
+        .visual-roas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), transparent);
+            border-radius: 20px;
+            height: 100%;
+            position: relative;
+        }
+
+        .roas-counter {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--success);
+            text-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .growth-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--success);
+            font-weight: 600;
+            margin-top: -10px;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+
+        .growth-active .growth-indicator {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .arrow-up {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 10px solid var(--success);
+            animation: bounceUp 2s infinite;
+        }
+
+        @keyframes bounceUp {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .visual-chat {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-bubble {
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 10px;
+            max-width: 70%;
+        }
+
+        .chat-bubble.ai {
+            background: var(--primary);
+            align-self: flex-start;
+        }
+
+        .chat-bubble.user {
+            background: #f5f5f7;
+            color: #1d1d1f;
+            align-self: flex-end;
+        }
+
+        @keyframes grow {
+            from {
+                height: 20%;
+            }
+
+            to {
+                height: 80%;
+            }
+        }
+
+        /* Icon Decorators */
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(0, 102, 204, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: var(--primary);
+        }
+
+        /* Wetracked-style Comparison - ALL DARK */
+        .comparison {
+            padding: 120px 0;
+            text-align: center;
+            background: #ffffff;
+            color: #1d1d1f;
+        }
+
+        .comparison h2 {
+            font-size: 48px;
+            font-weight: 600;
+            margin-bottom: 60px;
+        }
+
+        .comparison-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .comp-card {
+            padding: 40px;
+            border-radius: 24px;
+            text-align: left;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .comp-card.bad {
+            background: #fbfbfd;
+            opacity: 0.8;
+        }
+
+        .comp-card.good {
+            background: rgba(8, 102, 255, 0.05);
+            border-color: var(--primary);
+            box-shadow: 0 0 40px rgba(8, 102, 255, 0.1);
+        }
+
+        .comp-card h4 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .comp-card p {
+            color: #86868b;
+            font-size: 17px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-dot.red {
+            background: #ff3b30;
+        }
+
+        .status-dot.green {
+            background: #34c759;
+            box-shadow: 0 0 10px #34c759;
+        }
+
+        /* New Sections Styles */
+        .pricing {
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .pricing-grid {
+            max-width: var(--max-width);
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding: 0 22px;
+        }
+
+        .price-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 28px;
+            padding: 40px;
+            text-align: left;
+            transition: var(--transition-smooth);
+        }
+
+        .price-card:hover {
+            border-color: var(--primary);
+        }
+
+        .price-card.featured {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 12px 40px rgba(0, 102, 204, 0.1);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .faq {
+            padding: 100px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 19px;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            transition: transform 0.4s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-secondary);
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 24px;
+            opacity: 1;
+        }
+
+        .final-cta {
+            padding: 200px 0;
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(8, 102, 255, 0.08) 0%, transparent 70%);
+            position: relative;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(8, 102, 255, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 850px) {
+            .nav-links :not(.btn-apple) {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 100px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .showcase-container {
+                padding: 0 10px;
+                overflow-x: hidden;
+                justify-content: center;
+                height: 450px;
+            }
+
+            .showcase {
+                transform: scale(0.4);
+                transform-origin: top center;
+                margin-left: 0;
+            }
+
+            .feature-grid,
+            .pricing-grid {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .bento-card.large,
+            .bento-card.small {
+                width: 100%;
+                min-height: auto;
+            }
+
+            .visual-scheduler {
+                height: 200px;
+            }
+
+            .faq-container {
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .price-card {
+                width: 100% !important;
+                margin: 0 !important;
+            }
+        }
+
+        /* Mini Chat within Bento Grid */
+        .mini-chat-container {
+            height: 200px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .mini-chat-container .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .mini-chat-container .mini-input-area {
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.02);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 5px;
+        }
+
+        .mini-chat-container .mini-input-area input {
+            flex: 1;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 6px 12px;
+            color: #1d1d1f;
+            font-size: 11px;
+            outline: none;
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+        }
+
+        .msg.ai {
+            background: rgba(0, 0, 0, 0.04);
+            color: #1d1d1f;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg.user {
+            background: var(--primary);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Comparison Section Icon */
+        .comp-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .comp-icon.red-icon {
+            background: rgba(255, 59, 48, 0.08);
+            color: #ff3b30;
+        }
+
+        .comp-icon.green-icon {
+            background: rgba(52, 199, 89, 0.08);
+            color: #34c759;
+        }
+
+        /* Pricing Tier Icon */
+        .tier-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            background: rgba(0, 113, 227, 0.06);
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo"><span style="color: var(--primary);">GENZ</span>TECH</div>
+            <div class="nav-links">
+                <a href="#features">Tính năng</a>
+                <a href="#tracking">Ads Check</a>
+                <a href="#automation">Tự động hóa</a>
+                <a href="login.html" class="btn-login">Đăng nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero fade-in">
+            <h1>AI MARKETING AGENT.</h1>
+            <p>Hệ sinh thái tối ưu Marketing Meta cho doanh nghiệp. Đã đến lúc tối ưu toàn bộ tiềm năng quảng cáo của&nbsp;bạn.</p>
+            <div class="cta-group">
+                <a href="#" class="btn-apple">Thử nghiệm miễn phí</a>
+                <a href="#" class="btn-link">Xem video demo <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 14L13 10L7 6V14Z" fill="currentColor" />
+                    </svg></a>
+            </div>
+
+            <div class="showcase">
+                <div class="mockup-container">
+                    <div class="scanline"></div>
+                    <div class="mockup-sidebar">
+                        <div class="mockup-menu-item" style="color: var(--primary);">
+                            <div class="menu-dot" style="background: var(--primary);"></div>
+                            <span>Dashboard</span>
+                        </div>
+                        <div class="mockup-menu-item">
+                            <div class="menu-dot"></div>
+                            <span>Ad Manager</span>
+                        </div>
+                        <div class="mockup-menu-item">
+                            <div class="menu-dot"></div>
+                            <span>Scheduler</span>
+                        </div>
+                        <div class="mockup-menu-item">
+                            <div class="menu-dot"></div>
+                            <span>Automation</span>
+                        </div>
+                        <div class="mockup-menu-item" style="margin-top: 30px; opacity: 0.5;">
+                            <span>Settings</span>
+                        </div>
+                    </div>
+                    <div class="mockup-main" style="padding-left: 20px;">
+                        <div class="mockup-stat">
+                            <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 5px;">Total
+                                Revenue</div>
+                            <div style="font-size: 18px; font-weight: 700;">$142.5K</div>
+                        </div>
+                        <div class="mockup-stat">
+                            <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 5px;">Conversions
+                            </div>
+                            <div style="font-size: 18px; font-weight: 700;">3,120</div>
+                        </div>
+                        <div class="mockup-stat">
+                            <div style="font-size: 10px; color: var(--text-secondary); margin-bottom: 5px;">ROI</div>
+                            <div style="font-size: 18px; font-weight: 700; color: var(--success);">4.5x</div>
+                        </div>
+
+                        <div class="mockup-chart" style="margin-top: 20px;">
+                            <div class="chart-grid">
+                                <div class="grid-line"><span class="y-label">150K</span></div>
+                                <div class="grid-line"><span class="y-label">100K</span></div>
+                                <div class="grid-line"><span class="y-label">50K</span></div>
+                                <div class="grid-line" style="border-bottom: none;"><span class="y-label">0</span></div>
+                                <div class="x-axis-labels">
+                                    <span>Oct 26</span>
+                                    <span>Oct 27</span>
+                                    <span>Oct 28</span>
+                                    <span>Oct 29</span>
+                                    <span>Oct 30</span>
+                                </div>
+                            </div>
+                            <svg class="mockup-line" viewBox="0 0 800 200" style="padding-bottom: 20px;">
+                                <path d="M0,150 Q100,50 200,120 T400,80 T600,140 T800,40" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="floating-card" style="top: 20%; right: 10%; animation-delay: 0s;">
+                        <span style="color: var(--success);">●</span> New Lead: $2,400
+                    </div>
+                    <div class="floating-card" style="bottom: 15%; right: 25%; animation-delay: 1s;">
+                        <span style="color: var(--primary);">●</span> Ad Optimizing...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features section-alt">
+            <!-- Tracking Card -->
+            <div class="bento-card large tracking">
+                <div class="card-visual visual-tracking">
+                    <div class="data-bar">
+                        <div class="data-fill" style="animation-delay: 0s;"></div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="data-fill" style="animation-delay: 0.2s;"></div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="data-fill" style="animation-delay: 0.4s;"></div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="data-fill" style="animation-delay: 0.6s;"></div>
+                    </div>
+                    <div style="margin-left: 20px; font-family: monospace; font-size: 12px; color: var(--success);">
+                        +100% SECURE TRACKING</div>
+                </div>
+                <div>
+                    <h3>Ads Check Nhanh gọn & Minh bạch.</h3>
+                    <p>Kiểm soát tình trạng quảng cáo trong thời gian thực. Phát hiện lỗi và tối ưu hóa ngân sách tức
+                        thì mà không cần cài đặt phức tạp.</p>
+                </div>
+            </div>
+
+            <!-- ROI Card -->
+            <div class="bento-card small" id="roi-card">
+                <div class="card-visual visual-roas">
+                    <div class="roas-counter" id="roi-counter">1.0x</div>
+                    <div class="growth-indicator">
+                        <div class="arrow-up"></div>
+                        <span>+250% Growth</span>
+                    </div>
+                </div>
+                <div>
+                    <h3>ROI Đột phá.</h3>
+                    <p>Tăng cường lợi nhuận trên vốn đầu tư ngay lập tức nhờ dữ liệu feed chuẩn xác cho AI của Meta.</p>
+                </div>
+            </div>
+
+            <!-- AI Chat Card - Now Functional -->
+            <div class="bento-card small"
+                style="background: linear-gradient(180deg, rgba(0, 102, 204, 0.05) 0%, transparent 100%);">
+                <div class="mini-chat-container">
+                    <div class="chat-messages" id="mini-messages">
+                        <div class="msg ai">Chào bạn! Tôi là trợ lý AI của GENZTECH. Tôi có thể giúp gì cho chiến dịch Marketing của bạn hôm nay?</div>
+                    </div>
+                    <div class="mini-input-area">
+                        <input type="text" id="mini-input" placeholder="Hỏi AI...">
+                        <button id="mini-send"
+                            style="background: var(--primary); border: none; border-radius: 4px; color: white; padding: 4px 10px; cursor: pointer; font-size: 10px;">Gửi</button>
+                    </div>
+                </div>
+                <div>
+                    <h3>Tự động hóa 24/7.</h3>
+                    <p>Chatbot thông minh sàng lọc lead và chăm sóc khách hàng không ngừng nghỉ.</p>
+                </div>
+            </div>
+
+            <!-- Scheduler Card -->
+            <div class="bento-card large scheduler-card">
+                <div class="card-visual visual-scheduler">
+                    <div class="scheduler-stack">
+                        <div class="stack-item"></div>
+                        <div class="stack-item" style="transform: translate(10px, 10px) rotate(4deg); opacity: 0.5;">
+                        </div>
+                        <div class="post-card-mockup">
+                            <div class="status-badge">SCHEDULED</div>
+                            <div class="post-image">
+                                <div class="scanline"></div>
+                            </div>
+                            <div class="post-line" style="width: 80%;"></div>
+                            <div class="post-line" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Lên lịch Đăng bài Facebook.</h3>
+                    <p>Tối ưu hóa quy trình quản lý nội dung. Lên lịch và tự động hóa việc đăng bài trên hàng loạt
+                        Fanpage Facebook chỉ trong vài click.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tracking" class="comparison">
+            <div class="container">
+                <h2>Kiểm soát toàn diện.<br>Kết quả tuyệt đối.</h2>
+                <div class="comparison-grid">
+                    <div class="comp-card bad">
+                        <div class="comp-icon red-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="status-dot red"></span>
+                        <h4>Quản lý Thủ công</h4>
+                        <p>Dễ sai sót, phản ứng chậm với các thay đổi của thuật toán. Khó theo dõi chi phí thực tế theo
+                            thời gian thực.</p>
+                        <ul style="list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; color: #86868b; font-size: 14px;">
+                            <li>✘ Báo cáo chậm 24-48h</li>
+                            <li>✘ Không có cảnh báo tực thời</li>
+                            <li>✘ Dễ bỏ lỡ tối ưu ngân sách</li>
+                        </ul>
+                    </div>
+                    <div class="comp-card good">
+                        <div class="comp-icon green-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="status-dot green"></span>
+                        <h4>GENZTECH Ads Check</h4>
+                        <p>Tự động hóa việc kiểm tra tình thái quảng cáo. Cảnh báo lỗi ngay lập tức và gợi ý tối ưu hóa
+                            dựa trên dữ liệu chuẩn xác.</p>
+                        <ul style="list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; color: #34c759; font-size: 14px;">
+                            <li>✔ Quét mỗi 5-15 phút</li>
+                            <li>✔ Cảnh báo Telegram tức thì</li>
+                            <li>✔ Tối ưu ngân sách tự động</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing section-alt">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: 48px; font-weight: 700; color: #1d1d1f; margin-bottom: 16px; letter-spacing: -0.02em;">Chọn Gói Tối Ưu Cho Bạn</h2>
+                    <p style="color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto;">Bắt đầu thống trị quảng cáo Meta ngay hôm nay với các gói giải pháp linh hoạt, phù hợp với mọi quy mô từ cá nhân đến doanh nghiệp lớn.</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <div class="tier-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div
+                            style="font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-bottom: 20px;">
+                            STANDARD</div>
+                        <div style="font-size: 28px; font-weight: 700; margin-bottom: 24px;">Liên hệ báo giá</div>
+                        <ul
+                            style="list-style: none; color: var(--text-secondary); font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                            <li><span style="color: var(--primary);">✓</span> Quản lý tối đa 10 Fanpage</li>
+                            <li><span style="color: var(--primary);">✓</span> Ads Check thời gian thực</li>
+                            <li><span style="color: var(--primary);">✓</span> Hệ thống cảnh báo qua Telegram</li>
+                            <li><span style="color: var(--primary);">✓</span> Lên lịch bài viết cơ bản</li>
+                            <li><span style="color: var(--primary);">✓</span> Hỗ trợ kỹ thuật 24/7</li>
+                        </ul>
+                        <a href="#" class="btn-apple"
+                            style="display: block; text-align: center; margin-top: 32px; background: #f5f5f7; border: 1px solid rgba(0, 0, 0, 0.1); color: #1d1d1f; transition: all 0.3s;"
+                            onmouseover="this.style.background='#e8e8ed'; this.style.transform='scale(1.02)';"
+                            onmouseout="this.style.background='#f5f5f7'; this.style.transform='scale(1)';">Nhận báo giá</a>
+                    </div>
+                    <div class="price-card featured">
+                        <div class="tier-icon" style="background: rgba(0, 113, 227, 0.1);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div style="font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 20px;">
+                            PREMIUM <span style="background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 11px; margin-left: 8px;">PHỔ BIẾN</span></div>
+                        <div style="font-size: 28px; font-weight: 700; margin-bottom: 24px;">Tùy chỉnh theo quy mô</div>
+                        <ul
+                            style="list-style: none; color: var(--text-secondary); font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                            <li><span style="color: var(--primary);">✓</span> Fanpage không giới hạn</li>
+                            <li><span style="color: var(--primary);">✓</span> Ads Check & Audit chuyên sâu</li>
+                            <li><span style="color: var(--primary);">✓</span> Tự động hóa ROI Dashboard</li>
+                            <li><span style="color: var(--primary);">✓</span> Chatbot AI sàng lọc khách hàng</li>
+                            <li><span style="color: var(--primary);">✓</span> Phân quyền đội ngũ (Multi-user)</li>
+                            <li><span style="color: var(--primary);">✓</span> Ưu tiên xử lý sự cố</li>
+                        </ul>
+                        <a href="#" class="btn-apple" 
+                            style="display: block; text-align: center; margin-top: 32px; transition: all 0.3s;"
+                            onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 24px rgba(8, 102, 255, 0.4)';"
+                            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';">Đặt lịch Demo</a>
+                    </div>
+                    <div class="price-card">
+                        <div class="tier-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div
+                            style="font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-bottom: 20px;">
+                            ENTERPRISE</div>
+                        <div style="font-size: 28px; font-weight: 700; margin-bottom: 24px;">Giải pháp đặc thù</div>
+                        <ul
+                            style="list-style: none; color: var(--text-secondary); font-size: 14px; display: flex; flex-direction: column; gap: 12px;">
+                            <li><span style="color: var(--primary);">✓</span> Tích hợp API riêng (Custom API)</li>
+                            <li><span style="color: var(--primary);">✓</span> Bảo mật dữ liệu cấp ngân hàng</li>
+                            <li><span style="color: var(--primary);">✓</span> Quản lý tài sản (BM) tập trung</li>
+                            <li><span style="color: var(--primary);">✓</span> Đào tạo đội ngũ 1-1</li>
+                            <li><span style="color: var(--primary);">✓</span> White-label Giải pháp</li>
+                        </ul>
+                        <a href="#" class="btn-apple"
+                            style="display: block; text-align: center; margin-top: 32px; background: #f5f5f7; border: 1px solid rgba(0, 0, 0, 0.1); color: #1d1d1f; transition: all 0.3s;"
+                            onmouseover="this.style.background='#e8e8ed'; this.style.transform='scale(1.02)';"
+                            onmouseout="this.style.background='#f5f5f7'; this.style.transform='scale(1)';">Liên hệ chuyên gia</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section">
+            <div class="container faq">
+                <h2 style="text-align: center; margin-bottom: 80px; font-size: 48px; font-weight: 600; letter-spacing: -0.02em;">Câu hỏi thường gặp</h2>
+                <div class="faq-item">
+                    <div class="faq-question">GMarketing có an toàn cho tài khoản của tôi không?</div>
+                    <div class="faq-answer">Có, chúng tôi sử dụng API chính thức từ Meta và tuân thủ 100% các chính sách
+                        bảo mật của Facebook. Dữ liệu của bạn được mã hóa AES-256-GCM chuẩn ngân hàng.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Tôi có thể quản lý bao nhiêu Fanpage cùng lúc?</div>
+                    <div class="faq-answer">Số lượng Fanpage phụ thuộc vào gói dịch vụ bạn chọn. Gói Professional và
+                        Enterprise cho phép bạn kết nối không giới hạn số lượng Fanpage và BM.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Hệ thống Ads Check hoạt động như thế nào?</div>
+                    <div class="faq-answer">Hệ thống quét tài khoản quảng cáo của bạn theo thời gian thực (mỗi 5-15
+                        phút) để phát hiện các bất thường như quảng cáo bị từ chối, ngân sách tăng đột biến hoặc ROI
+                        giảm mạnh để cảnh báo ngay lập tức.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">GMarketing có hỗ trợ đào tạo sử dụng không?</div>
+                    <div class="faq-answer">Có, chúng tôi có đội ngũ hỗ trợ kỹ thuật 24/7 và tài liệu hướng dẫn chi
+                        tiết. Với gói Enterprise, chúng tôi hỗ trợ đào tạo trực tiếp 1-1 cho đội ngũ của bạn.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Tôi có thể dùng thử trước khi mua không?</div>
+                    <div class="faq-answer">Chắc chắn rồi. Bạn có thể bắt đầu với gói Standard để trải nghiệm các tính
+                        năng cốt lõi hoặc liên hệ để được cấp quyền dùng thử bản Pro trong 7 ngày.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Tôi có thể hủy gói dịch vụ bất cứ lúc nào?</div>
+                    <div class="faq-answer">Hoàn toàn được. Không có cam kết dài hạn, bạn có thể thay đổi hoặc hủy gói
+                        dịch vụ trực tiếp trong phần cài đặt tài khoản mà không mất thêm chi phí.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="final-cta">
+            <div class="container">
+                <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 42px; font-weight: 700; color: var(--primary);">2,000+</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">Nhà quảng cáo</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 42px; font-weight: 700; color: var(--primary);">4.5x</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">ROI trung bình</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 42px; font-weight: 700; color: var(--primary);">24/7</div>
+                        <div style="font-size: 14px; color: var(--text-secondary);">Hỗ trợ kỹ thuật</div>
+                    </div>
+                </div>
+                <h2 style="font-size: 56px; font-weight: 600; margin-bottom: 24px;">Sẵn sàng bứt phá ROI?</h2>
+                <p style="color: var(--text-secondary); font-size: 20px; margin-bottom: 40px;">Tham gia cùng hơn 2,000+
+                    nhà quảng cáo chuyên nghiệp.</p>
+                <a href="#" class="btn-apple" style="font-size: 17px; padding: 14px 32px;">Bắt đầu ngay bây giờ</a>
+            </div>
+        </section>
+    </main>
+
+
+
+
+    <footer
+        style="padding: 80px 22px; max-width: var(--max-width); margin: 0 auto; border-top: 1px solid rgba(0, 0, 0, 0.1); color: var(--text-secondary); font-size: 12px;">
+        <div class="footer-links">
+            <a href="#">Copyright © 2026 GENZTECH MARKETING</a>
+            <a href="privacy-policy.html">Chính sách quyền riêng tư</a>
+            <a href="terms-of-service.html">Điều khoản dịch vụ</a>
+            <a href="data-deletion.html">Chính sách xóa dữ liệu</a>
+        </div>
+        <p>GENZTECH MARKETING là nền tảng độc lập, không thuộc Meta Platforms, Inc. Chúng tôi cung cấp giải pháp dựa
+            trên Meta
+            Marketing API.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observerOptions = { threshold: 0.5 };
+
+        const roiObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateROI();
+                    entry.target.classList.add('growth-active');
+                    roiObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        roiObserver.observe(document.getElementById('roi-card'));
+
+        function animateROI() {
+            const counter = document.getElementById('roi-counter');
+            let current = 1.0;
+            const target = 4.5;
+            const duration = 2000; // 2 seconds
+            const startTime = performance.now();
+
+            function update(now) {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Ease out cubic
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                current = 1.0 + (target - 1.0) * easeProgress;
+
+                counter.textContent = current.toFixed(1) + 'x';
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // FAQ Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close other items
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Simple scale effect on scroll
+        window.addEventListener('scroll', () => {
+            const showcase = document.querySelector('.showcase');
+            const scroll = window.scrollY;
+            if (scroll < 500) {
+                showcase.style.transform = `perspective(1000px) rotateX(${5 - scroll / 100}deg) scale(${1 + scroll / 5000})`;
+            }
+        });
+        // API Configuration
+        // Khi deploy lên Railway, bạn hãy thay đổi URL này thành URL của Railway của bạn
+        // Ví dụ: https://your-project.up.railway.app/api/chat
+        const API_ENDPOINT = "/api/chat";
+
+        async function getAIResponse(userInput) {
+            try {
+                // Nếu chạy local thì gọi localhost:3000, nếu deploy thì gọi API_ENDPOINT
+                const baseUrl = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+                    ? "http://localhost:3000/api/chat"
+                    : API_ENDPOINT;
+
+                const response = await fetch(baseUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        message: userInput
+                    })
+                });
+
+                const data = await response.json();
+                if (data.reply) {
+                    return data.reply;
+                }
+                return "Xin lỗi, GENZ đang gặp chút gián đoạn kết nối. Bạn vui lòng thử lại sau nhé!";
+            } catch (error) {
+                console.error("API Error:", error);
+                return "Đã có lỗi xảy ra khi kết nối với máy chủ. Vui lòng kiểm tra lại Backend.";
+            }
+        }
+
+        // Typing Effect Function
+        function typeWriter(element, text, speed = 20) {
+            // Clear existing interval if any
+            if (element.typingInterval) {
+                clearInterval(element.typingInterval);
+            }
+            
+            let i = 0;
+            element.textContent = "";
+            element.typingInterval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(element.typingInterval);
+                    element.typingInterval = null;
+                }
+                const container = element.parentElement;
+                container.scrollTop = container.scrollHeight;
+            }, speed);
+        }
+
+        // Mini Chat Logic
+        const miniInput = document.getElementById('mini-input');
+        const miniSend = document.getElementById('mini-send');
+        const miniMessages = document.getElementById('mini-messages');
+
+        function addMiniMsg(text, type) {
+            const msg = document.createElement('div');
+            msg.className = `msg ${type}`;
+            msg.style.fontSize = '12px';
+            msg.style.padding = '6px 10px';
+            miniMessages.appendChild(msg);
+
+            if (type === 'ai') {
+                typeWriter(msg, text);
+            } else {
+                msg.textContent = text;
+            }
+            miniMessages.scrollTop = miniMessages.scrollHeight;
+        }
+
+        miniSend.addEventListener('click', async () => {
+            const text = miniInput.value.trim();
+            if (text) {
+                addMiniMsg(text, 'user');
+                miniInput.value = '';
+
+                // Show thinking state
+                const thinkingMsg = "GENZ đang suy nghĩ...";
+                addMiniMsg(thinkingMsg, 'ai');
+                const lastMsg = miniMessages.lastElementChild;
+
+                const response = await getAIResponse(text);
+                // The addMiniMsg above already started a typeWriter for the thinking message.
+                // We call typeWriter again to replace it with the real response.
+                // Our improved typeWriter will cancel the thinking animation.
+                typeWriter(lastMsg, response);
+            }
+        });
+
+        miniInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') miniSend.click();
+        });
+
+
+    </script>
+</body>
+
+</html>

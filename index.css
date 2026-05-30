@@ -1,0 +1,30 @@
+:root {
+    --primary: #0071e3;        /* Xanh Apple Blue */
+    --primary-dark: #0056b3;
+    --bg-base: #f5f5f7;        /* Nền tảng Apple Gray */
+    --bg-card: rgba(255, 255, 255, 0.7);
+    --text-primary: #1d1d1f;
+    --text-secondary: #86868b;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --max-width: 1200px;
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at 50% -20%, #ffffff 0%, #f5f5f7 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    line-height: 1.1;
+    overflow-x: hidden;
+}
+
+section {
+    width: 100%;
+}
