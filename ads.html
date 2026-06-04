@@ -5782,7 +5782,7 @@
                             FB.init({
                                 appId: '1312374654082617',
                                 cookie: true,
-                                xfbml: true,
+                                xfbml: false, // Đã tắt để sửa lỗi getByTag do FB quét DOM
                                 version: 'v19.0'
                             });
 
@@ -5817,7 +5817,8 @@
                                 }
                             }, {
                                 // config_id: '950033340162915', // LƯU Ý: Đây là Business ID, KHÔNG PHẢI Configuration ID. Facebook bắt buộc tạo Cấu Hình trong App để lấy ID thật. Tạm thời dùng luồng xin quyền chuẩn:
-                                scope: 'public_profile,email,ads_management,ads_read,business_management,pages_show_list,pages_read_engagement,pages_messaging',
+                                scope: 'public_profile,email',
+                                auth_type: 'reauthenticate', // Bắt buộc Facebook hỏi lại xem dùng nick nào
                                 return_scopes: true
                             });
                         });
