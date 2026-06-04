@@ -5816,10 +5816,7 @@
                                     alert('Truy cập bị từ chối hoặc quá trình đăng nhập bị huỷ.');
                                 }
                             }, {
-                                // config_id: '950033340162915', // LƯU Ý: Đây là Business ID, KHÔNG PHẢI Configuration ID. Facebook bắt buộc tạo Cấu Hình trong App để lấy ID thật. Tạm thời dùng luồng xin quyền chuẩn:
-                                scope: 'public_profile,email',
-                                auth_type: 'reauthenticate', // Bắt buộc Facebook hỏi lại xem dùng nick nào
-                                return_scopes: true
+                                config_id: '950033340162915' // Đã chuyển sang dùng Login for Business
                             });
                         });
 
