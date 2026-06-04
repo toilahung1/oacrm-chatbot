@@ -585,8 +585,8 @@ initReportingDb();
 
 app.post('/api/auth/exchange-token', async (req, res) => {
     try {
-        const { short_lived_token } = req.body;
-        if (!short_lived_token) return res.status(400).json({ error: 'Token is required' });
+        const { short_lived_token, code } = req.body;
+        if (!short_lived_token && !code) return res.status(400).json({ error: 'Token or code is required' });
 
         const appId = process.env.FB_APP_ID || process.env.FB_CLIENT_ID;
         const appSecret = process.env.FB_APP_SECRET || process.env.FB_CLIENT_SECRET;
@@ -598,16 +598,31 @@ app.post('/api/auth/exchange-token', async (req, res) => {
 
         let longLivedToken;
         try {
-            const fbRes = await axios.get(`https://graph.facebook.com/v19.0/oauth/access_token`, {
-                params: {
-                    grant_type: 'fb_exchange_token',
-                    client_id: appId,
-                    client_secret: appSecret,
-                    fb_exchange_token: short_lived_token
-                },
-                timeout: 15000
-            });
-            longLivedToken = fbRes.data.access_token;
+            if (code) {
+                // Business Login trả về Code -> Đổi code lấy Token
+                const fbRes = await axios.get(`https://graph.facebook.com/v19.0/oauth/access_token`, {
+                    params: {
+                        client_id: appId,
+                        client_secret: appSecret,
+                        redirect_uri: '', // Bắt buộc để trống với JS SDK
+                        code: code
+                    },
+                    timeout: 15000
+                });
+                longLivedToken = fbRes.data.access_token;
+            } else {
+                // Login thường trả về Token ngắn hạn -> Đổi lấy Token dài hạn
+                const fbRes = await axios.get(`https://graph.facebook.com/v19.0/oauth/access_token`, {
+                    params: {
+                        grant_type: 'fb_exchange_token',
+                        client_id: appId,
+                        client_secret: appSecret,
+                        fb_exchange_token: short_lived_token
+                    },
+                    timeout: 15000
+                });
+                longLivedToken = fbRes.data.access_token;
+            }
         } catch (fbErr) {
             console.error('❌ FB Token Exchange Error:', fbErr.response?.data || fbErr.message);
             return res.status(500).json({ error: 'Failed to exchange token with Facebook', details: fbErr.response?.data?.error?.message || fbErr.message });

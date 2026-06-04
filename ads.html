@@ -5569,21 +5569,26 @@
 
 
 
-                        async function handleSuccessfulLogin(shortLivedToken) {
-                            // 0. Đổi lấy Token dài hạn (60 ngày) ngay lập tức
-                            let accessToken = shortLivedToken;
+                        async function handleSuccessfulLogin(tokenOrCode, isCode = false) {
+                            let accessToken = isCode ? null : tokenOrCode;
                             try {
+                                const payload = isCode ? { code: tokenOrCode } : { short_lived_token: tokenOrCode };
                                 const exRes = await fetch('/api/auth/exchange-token', {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
-                                    body: JSON.stringify({ short_lived_token: shortLivedToken })
+                                    body: JSON.stringify(payload)
                                 });
                                 const exData = await exRes.json();
                                 if (exData.access_token) {
                                     accessToken = exData.access_token;
-                                    console.log('💎 Đã nhận Token dài hạn (60 ngày)');
+                                    console.log('💎 Đã nhận Token dài hạn (60 ngày) từ Server');
                                 }
                             } catch (e) { console.warn('Lỗi đổi token:', e); }
+
+                            if (!accessToken) {
+                                alert('Không thể lấy Token truy cập. Vui lòng kiểm tra lại cấu hình Facebook!');
+                                return;
+                            }
 
                             localStorage.setItem('fb_access_token', accessToken);
                             window.liveAccessToken = accessToken;
@@ -5811,7 +5816,10 @@
                             }
                             FB.login(function (response) {
                                 if (response.authResponse) {
-                                    handleSuccessfulLogin(response.authResponse.accessToken);
+                                    // Business Login trả về code, Login thường trả về accessToken
+                                    const code = response.authResponse.code;
+                                    const token = response.authResponse.accessToken;
+                                    handleSuccessfulLogin(code || token, !!code);
                                 } else {
                                     alert('Truy cập bị từ chối hoặc quá trình đăng nhập bị huỷ.');
                                 }
