@@ -5820,17 +5820,15 @@
                             }
                             FB.login(function (response) {
                                 if (response.authResponse) {
-                                    // Business Login trả về code, Login thường trả về accessToken
-                                    const code = response.authResponse.code;
+                                    // Dùng accessToken trực tiếp (short-lived), server sẽ đổi sang long-lived 60 ngày
                                     const token = response.authResponse.accessToken;
-                                    handleSuccessfulLogin(code || token, !!code);
+                                    handleSuccessfulLogin(token, false);
                                 } else {
                                     alert('Truy cập bị từ chối hoặc quá trình đăng nhập bị huỷ.');
                                 }
                             }, {
-                                config_id: '1621422398938781',
-                                response_type: 'code',
-                                override_default_response_type: true
+                                scope: 'pages_show_list,pages_read_engagement,pages_manage_metadata,pages_messaging,ads_read,ads_management,business_management,read_insights',
+                                return_scopes: true
                             });
                         });
 
