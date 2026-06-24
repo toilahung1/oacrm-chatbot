@@ -601,13 +601,12 @@ app.post('/api/auth/exchange-token', async (req, res) => {
         try {
             if (code) {
                 // Business Login trả về Code -> Đổi code lấy Token
-                // redirect_uri phải khớp với origin của app (JS SDK dùng empty string)
-                const redirectUri = process.env.FRONTEND_URL || '';
+                // redirect_uri phải là empty string với JS SDK flow
                 const fbRes = await axios.get(`https://graph.facebook.com/v19.0/oauth/access_token`, {
                     params: {
                         client_id: appId,
                         client_secret: appSecret,
-                        redirect_uri: redirectUri,
+                        redirect_uri: '',
                         code: code
                     },
                     timeout: 15000
@@ -759,6 +758,19 @@ app.post('/api/telegram/webhook', async (req, res) => {
         console.error('Webhook Error:', err.message);
         res.sendStatus(200);
     }
+});
+
+// --- DEBUG: kiểm tra config (chỉ dùng khi debug, không expose secret) ---
+app.get('/api/debug/config', (req, res) => {
+    res.json({
+        has_fb_app_id: !!process.env.FB_APP_ID,
+        fb_app_id_preview: process.env.FB_APP_ID ? process.env.FB_APP_ID.slice(0, 6) + '...' : null,
+        has_fb_app_secret: !!(process.env.FB_APP_SECRET || process.env.FB_CLIENT_SECRET),
+        has_openai_key: !!process.env.OPENAI_API_KEY,
+        has_db: !!process.env.DATABASE_URL,
+        frontend_url: process.env.FRONTEND_URL || '(not set)',
+        node_env: process.env.NODE_ENV || 'development'
+    });
 });
 
 // --- FACEBOOK MESSENGER WEBHOOK ---
