@@ -5582,6 +5582,10 @@
                                 if (exData.access_token) {
                                     accessToken = exData.access_token;
                                     console.log('💎 Đã nhận Token dài hạn (60 ngày) từ Server');
+                                } else if (!exRes.ok) {
+                                    console.error('❌ Exchange token error:', exData);
+                                    alert(`Lỗi đăng nhập Facebook:\n${exData.details || exData.error || 'Unknown error'}\n\nHint: ${exData.hint || 'Kiểm tra FB_APP_ID và FB_APP_SECRET'}`);
+                                    return;
                                 }
                             } catch (e) { console.warn('Lỗi đổi token:', e); }
 
