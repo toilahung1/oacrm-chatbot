@@ -55,7 +55,7 @@ app.use(session({
         tableName: 'session',
         createTableIfMissing: true
     }),
-    secret: process.env.SESSION_SECRET || 'gztech_secret_2024',
+    secret: process.env.JWT_SECRET || process.env.SESSION_SECRET || 'gztech_secret_2024',
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
@@ -501,8 +501,9 @@ app.post('/api/chat', async (req, res) => {
         4. CHIẾN THUẬT: Nếu khách hỏi về giá hoặc dịch vụ, hãy khéo léo lồng ghép lợi ích và giá trị cốt lõi của GENZTECH.
         HÃY SUY NGHĨ TỪNG BƯỚC MỘT ĐỂ ĐƯA RA CÂU TRẢ LỜI TỐT NHẤT.`;
 
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-            model: 'gpt-4o',
+        const openaiBase = process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1';
+        const response = await axios.post(`${openaiBase}/chat/completions`, {
+            model: process.env.AI_MODEL || 'gpt-4o',
             messages: [{ role: 'system', content: systemPrompt }, { role: 'user', content: message }],
             temperature: 0.7
         }, { headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' } });
@@ -889,8 +890,9 @@ app.post('/api/facebook/webhook', (req, res) => {
                                     let systemInstruction = "Bạn là trợ lý AI của GENZTECH. ";
                                     if (customPrompt) systemInstruction += `Chỉ dẫn: ${customPrompt}. Hãy trả lời tự nhiên.`;
 
-                                    const aiRes = await axios.post('https://api.openai.com/v1/chat/completions', {
-                                        model: 'gpt-4o',
+                                    const openaiBase = process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1';
+                                    const aiRes = await axios.post(`${openaiBase}/chat/completions`, {
+                                        model: process.env.AI_MODEL || 'gpt-4o',
                                         messages: [{ role: 'system', content: systemInstruction }, { role: 'user', content: messageText }],
                                         temperature: 0.7
                                     }, { headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}` } });
