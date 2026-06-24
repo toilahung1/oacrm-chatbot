@@ -600,13 +600,16 @@ app.post('/api/auth/exchange-token', async (req, res) => {
         let longLivedToken;
         try {
             if (code) {
-                // Business Login trả về Code -> Đổi code lấy Token
-                // redirect_uri phải là empty string với JS SDK flow
+                // Business Login Code Exchange
+                // redirect_uri phải khớp với URL đã đăng ký trong Business Login Config
+                const redirectUri = process.env.FRONTEND_URL
+                    ? process.env.FRONTEND_URL.replace(/\/$/, '')
+                    : '';
                 const fbRes = await axios.get(`https://graph.facebook.com/v19.0/oauth/access_token`, {
                     params: {
                         client_id: appId,
                         client_secret: appSecret,
-                        redirect_uri: '',
+                        redirect_uri: redirectUri,
                         code: code
                     },
                     timeout: 15000
