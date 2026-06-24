@@ -601,11 +601,13 @@ app.post('/api/auth/exchange-token', async (req, res) => {
         try {
             if (code) {
                 // Business Login trả về Code -> Đổi code lấy Token
+                // redirect_uri phải khớp với origin của app (JS SDK dùng empty string)
+                const redirectUri = process.env.FRONTEND_URL || '';
                 const fbRes = await axios.get(`https://graph.facebook.com/v19.0/oauth/access_token`, {
                     params: {
                         client_id: appId,
                         client_secret: appSecret,
-                        redirect_uri: '', // Bắt buộc để trống với JS SDK
+                        redirect_uri: redirectUri,
                         code: code
                     },
                     timeout: 15000
@@ -625,8 +627,15 @@ app.post('/api/auth/exchange-token', async (req, res) => {
                 longLivedToken = fbRes.data.access_token;
             }
         } catch (fbErr) {
-            console.error('❌ FB Token Exchange Error:', fbErr.response?.data || fbErr.message);
-            return res.status(500).json({ error: 'Failed to exchange token with Facebook', details: fbErr.response?.data?.error?.message || fbErr.message });
+            const detail = fbErr.response?.data?.error || fbErr.message;
+            console.error('❌ FB Token Exchange Error:', JSON.stringify(detail));
+            console.error('   App ID used:', appId, '| Has Secret:', !!appSecret);
+            return res.status(500).json({ 
+                error: 'Failed to exchange token with Facebook', 
+                details: detail?.message || fbErr.message,
+                code: detail?.code,
+                hint: !appId ? 'FB_APP_ID missing in env' : !appSecret ? 'FB_APP_SECRET missing in env' : 'Check App ID/Secret match'
+            });
         }
 
         // Lấy thông tin user từ FB
