@@ -773,6 +773,26 @@ app.post('/api/facebook/webhook', (req, res) => {
             messaging.forEach(webhookEvent => {
                 const senderId = webhookEvent.sender.id;
                 const recipientId = webhookEvent.recipient.id;
+
+                // --- POSTBACK (Get Started, Menu buttons, Quick reply buttons) ---
+                if (webhookEvent.postback) {
+                    const payload = webhookEvent.postback.payload;
+                    console.log(`[Postback] sender=${senderId} payload=${payload}`);
+                    (async () => {
+                        try {
+                            const pageRes = await pool.query('SELECT page_access_token FROM facebook_pages WHERE page_id=$1', [recipientId]);
+                            let pageToken = pageRes.rows[0]?.page_access_token;
+                            if (!pageToken) {
+                                const ur = await pool.query('SELECT fb_access_token FROM user_notifications WHERE fb_access_token IS NOT NULL LIMIT 1');
+                                pageToken = ur.rows[0]?.fb_access_token;
+                            }
+                            if (!pageToken) return;
+                            await sendTypingOn(senderId, pageToken);
+                            await handlePostback(senderId, payload, pageToken);
+                        } catch (e) { console.error('[Postback Error]', e.message); }
+                    })();
+                }
+
                 if (webhookEvent.message) {
                     const messageText = webhookEvent.message.text;
                     const isEcho = webhookEvent.message.is_echo;
@@ -796,6 +816,9 @@ app.post('/api/facebook/webhook', (req, res) => {
                                 }
 
                                 if (page && page.ai_enabled) {
+                                    // Hiện typing indicator
+                                    await sendTypingOn(senderId, page.page_access_token);
+
                                     // BƯỚC 0: HANDOFF CHECK
                                     const handoffRes = await pool.query('SELECT keywords, chat_id FROM chatbot_handoff_config WHERE page_id = $1', [recipientId]);
                                     const handoffConfig = handoffRes.rows[0];
@@ -1869,6 +1892,140 @@ app.post('/api/chatbot/upload', express.raw({ type: '*/*', limit: '10mb' }), (re
     const url = `data:${mimeType};base64,${base64}`;
     res.json({ url });
 });
+
+// ============================================================
+// MESSENGER PROFILE SETUP (Get Started, Greeting, Menu)
+// POST /api/facebook/setup-profile?page_id=xxx&token=xxx
+// ============================================================
+app.post('/api/facebook/setup-profile', async (req, res) => {
+    try {
+        const { page_id, token } = req.query;
+        let accessToken = token;
+        if (!accessToken && page_id) {
+            const r = await pool.query('SELECT page_access_token FROM facebook_pages WHERE page_id=$1', [page_id]);
+            accessToken = r.rows[0]?.page_access_token;
+        }
+        if (!accessToken) return res.status(400).json({ error: 'Missing access token' });
+
+        const base = 'https://graph.facebook.com/v19.0/me/messenger_profile';
+        const headers = { 'Content-Type': 'application/json' };
+        const params = { access_token: accessToken };
+
+        // 1. Get Started button
+        await axios.post(base, {
+            get_started: { payload: 'GET_STARTED' }
+        }, { headers, params });
+
+        // 2. Greeting text
+        await axios.post(base, {
+            greeting: [
+                { locale: 'default', text: 'Xin chào {{user_first_name}}! 👋 Tôi là trợ lý AI của GENZTECH, sẵn sàng hỗ trợ bạn 24/7.' },
+                { locale: 'vi_VN',  text: 'Xin chào {{user_first_name}}! 👋 Tôi là trợ lý AI của GENZTECH, sẵn sàng hỗ trợ bạn 24/7.' }
+            ]
+        }, { headers, params });
+
+        // 3. Persistent Menu
+        await axios.post(base, {
+            persistent_menu: [{
+                locale: 'default',
+                composer_input_disabled: false,
+                call_to_actions: [
+                    { type: 'postback', title: '🏠 Trang chủ',        payload: 'MENU_HOME' },
+                    { type: 'postback', title: '💬 Chat với AI',       payload: 'MENU_AI_CHAT' },
+                    { type: 'postback', title: '📋 Dịch vụ của chúng tôi', payload: 'MENU_SERVICES' },
+                    { type: 'postback', title: '📞 Liên hệ tư vấn',   payload: 'MENU_CONTACT' },
+                    { type: 'web_url',  title: '🌐 Website',
+                      url: process.env.FRONTEND_URL || 'https://genztechcorp.com',
+                      webview_height_ratio: 'full' }
+                ]
+            }]
+        }, { headers, params });
+
+        // 4. Ice breakers (gợi ý câu hỏi khi mở bot lần đầu)
+        await axios.post(base, {
+            ice_breakers: [
+                { question: 'Dịch vụ của GENZTECH là gì?',     payload: 'ICE_SERVICES' },
+                { question: 'Chi phí sử dụng dịch vụ?',         payload: 'ICE_PRICING' },
+                { question: 'Tôi muốn tối ưu quảng cáo Meta',  payload: 'ICE_ADS' },
+                { question: 'Liên hệ với đội ngũ tư vấn',       payload: 'ICE_CONTACT' }
+            ]
+        }, { headers, params }).catch(() => {}); // Ice breakers không phải page đều support
+
+        res.json({ success: true, message: 'Messenger profile đã được cấu hình thành công!' });
+    } catch (err) {
+        console.error('[setup-profile]', err.response?.data || err.message);
+        res.status(500).json({ error: err.response?.data || err.message });
+    }
+});
+
+// ============================================================
+// POSTBACK & GET STARTED HANDLER (gắn vào webhook POST)
+// ============================================================
+async function handlePostback(senderId, payload, pageToken) {
+    const responses = {
+        'GET_STARTED': {
+            text: `Xin chào! 👋 Tôi là trợ lý AI của GENZTECH MARKETING.\n\nTôi có thể giúp bạn:\n✅ Tối ưu hóa quảng cáo Meta (Facebook/Instagram)\n✅ Phân tích ROI & hiệu suất ads\n✅ Tư vấn chiến lược marketing\n✅ Hỗ trợ kỹ thuật 24/7\n\nBạn muốn tìm hiểu điều gì?`,
+            quick_replies: [
+                { content_type: 'text', title: '📊 Dịch vụ', payload: 'MENU_SERVICES' },
+                { content_type: 'text', title: '💰 Bảng giá', payload: 'ICE_PRICING' },
+                { content_type: 'text', title: '📞 Tư vấn ngay', payload: 'MENU_CONTACT' }
+            ]
+        },
+        'MENU_HOME': { text: 'Tôi có thể giúp gì cho bạn hôm nay? 😊' },
+        'MENU_AI_CHAT': { text: 'Hãy nhắn tin bất kỳ câu hỏi nào, tôi sẽ trả lời ngay! 🤖' },
+        'MENU_SERVICES': {
+            text: '🎯 GENZTECH cung cấp các dịch vụ:\n\n1️⃣ Ads Check - Kiểm tra quảng cáo tự động\n2️⃣ AI Chatbot - Chăm sóc khách hàng 24/7\n3️⃣ ROI Dashboard - Theo dõi lợi nhuận\n4️⃣ Lên lịch đăng bài tự động\n\nBạn quan tâm dịch vụ nào?',
+            quick_replies: [
+                { content_type: 'text', title: 'Ads Check', payload: 'SVC_ADS_CHECK' },
+                { content_type: 'text', title: 'AI Chatbot', payload: 'SVC_CHATBOT' },
+                { content_type: 'text', title: 'Xem bảng giá', payload: 'ICE_PRICING' }
+            ]
+        },
+        'MENU_CONTACT': {
+            text: '📞 Liên hệ với chúng tôi:\n\n🌐 Website: genztechcorp.com\n📧 Email: contact@genztechcorp.com\n⏰ Hỗ trợ: 24/7\n\nĐể được tư vấn trực tiếp, hãy để lại số điện thoại!'
+        },
+        'ICE_SERVICES': { text: null, use_ai: true, prompt: 'Người dùng hỏi về dịch vụ của GENZTECH. Hãy giới thiệu ngắn gọn các dịch vụ chính.' },
+        'ICE_PRICING':  { text: null, use_ai: true, prompt: 'Người dùng hỏi về giá dịch vụ. Giới thiệu các gói: Standard (liên hệ báo giá), Premium (tuỳ chỉnh), Enterprise (đặc thù).' },
+        'ICE_ADS':      { text: null, use_ai: true, prompt: 'Người dùng muốn tối ưu quảng cáo Meta. Hỏi thêm về ngân sách và mục tiêu của họ.' },
+        'ICE_CONTACT':  { text: '📞 Để được tư vấn 1-1, vui lòng để lại số điện thoại hoặc truy cập genztechcorp.com để đặt lịch demo!' }
+    };
+
+    const response = responses[payload] || { text: null, use_ai: true };
+
+    let messageBody;
+    if (response.use_ai) {
+        const openaiBase = process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1';
+        const aiRes = await axios.post(`${openaiBase}/chat/completions`, {
+            model: process.env.AI_MODEL || 'gpt-4o',
+            messages: [
+                { role: 'system', content: 'Bạn là trợ lý AI của GENZTECH MARKETING. Trả lời ngắn gọn, thân thiện.' },
+                { role: 'user',   content: response.prompt || payload }
+            ],
+            temperature: 0.7,
+            max_tokens: 300
+        }, { headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}` } });
+        messageBody = { text: aiRes.data.choices[0].message.content };
+    } else {
+        messageBody = response.quick_replies
+            ? { text: response.text, quick_replies: response.quick_replies }
+            : { text: response.text };
+    }
+
+    await axios.post(
+        `https://graph.facebook.com/v19.0/me/messages?access_token=${pageToken}`,
+        { recipient: { id: senderId }, message: messageBody, messaging_type: 'RESPONSE' }
+    );
+}
+
+// ============================================================
+// MESSENGER TYPING INDICATOR HELPER
+// ============================================================
+async function sendTypingOn(senderId, pageToken) {
+    await axios.post(
+        `https://graph.facebook.com/v19.0/me/messages?access_token=${pageToken}`,
+        { recipient: { id: senderId }, sender_action: 'typing_on' }
+    ).catch(() => {});
+}
 
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
